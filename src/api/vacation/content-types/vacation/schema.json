@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vacations",
+  "info": {
+    "singularName": "vacation",
+    "pluralName": "vacations",
+    "displayName": "Vacation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "employe": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::employe.employe",
+      "inversedBy": "vacations"
+    },
+    "startDate": {
+      "type": "datetime"
+    },
+    "endDate": {
+      "type": "datetime"
+    }
+  }
+}

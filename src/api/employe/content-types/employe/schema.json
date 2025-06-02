@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "employes",
+  "info": {
+    "singularName": "employe",
+    "pluralName": "employes",
+    "displayName": "Employe"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "responsibility": {
+      "type": "string"
+    },
+    "scale": {
+      "type": "string"
+    },
+    "shift": {
+      "type": "string"
+    },
+    "filial": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::filial.filial",
+      "inversedBy": "employes"
+    },
+    "startDate": {
+      "type": "datetime"
+    },
+    "endDate": {
+      "type": "datetime"
+    },
+    "salary": {
+      "type": "decimal"
+    },
+    "VC": {
+      "type": "decimal"
+    },
+    "VT": {
+      "type": "decimal"
+    },
+    "VR": {
+      "type": "decimal"
+    },
+    "VA": {
+      "type": "decimal"
+    },
+    "vacations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vacation.vacation",
+      "mappedBy": "employe"
+    },
+    "payrolls": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payroll.payroll",
+      "mappedBy": "employe"
+    }
+  }
+}
