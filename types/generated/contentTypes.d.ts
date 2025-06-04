@@ -410,7 +410,7 @@ export interface ApiEmployeEmploye extends Struct.CollectionTypeSchema {
     singularName: 'employe';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -451,7 +451,7 @@ export interface ApiFilialFilial extends Struct.CollectionTypeSchema {
     singularName: 'filial';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -517,7 +517,7 @@ export interface ApiPayrollPayroll extends Struct.CollectionTypeSchema {
     singularName: 'payroll';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -557,7 +557,7 @@ export interface ApiVacationVacation extends Struct.CollectionTypeSchema {
     singularName: 'vacation';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;

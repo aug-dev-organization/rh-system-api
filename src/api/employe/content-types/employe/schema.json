@@ -7,7 +7,7 @@
     "displayName": "Employe"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
