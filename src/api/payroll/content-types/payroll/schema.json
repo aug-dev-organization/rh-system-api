@@ -52,6 +52,9 @@
     },
     "paymentDate": {
       "type": "datetime"
+    },
+    "createdDate": {
+      "type": "date"
     }
   }
 }

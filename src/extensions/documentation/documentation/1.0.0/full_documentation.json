@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-06-05T18:28:39.885Z"
+    "x-generation-date": "2025-06-06T17:29:08.751Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -24,7 +24,7 @@
   },
   "servers": [
     {
-      "url": "http://10.30.10.43:1337/api",
+      "url": "http://localhost:1337/api",
       "description": "Development server"
     }
   ],
@@ -5409,6 +5409,10 @@
                             "type": "string",
                             "format": "date-time"
                           },
+                          "createdDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
                           "createdAt": {
                             "type": "string",
                             "format": "date-time"
@@ -6321,6 +6325,10 @@
                       "paymentDate": {
                         "type": "string",
                         "format": "date-time"
+                      },
+                      "createdDate": {
+                        "type": "string",
+                        "format": "date"
                       },
                       "createdAt": {
                         "type": "string",
@@ -7663,6 +7671,10 @@
                 "type": "string",
                 "format": "date-time"
               },
+              "createdDate": {
+                "type": "string",
+                "format": "date"
+              },
               "locale": {
                 "type": "string"
               },
@@ -8258,6 +8270,10 @@
                       "type": "string",
                       "format": "date-time"
                     },
+                    "createdDate": {
+                      "type": "string",
+                      "format": "date"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -8408,6 +8424,10 @@
           "paymentDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date"
           },
           "createdAt": {
             "type": "string",
@@ -9095,6 +9115,10 @@
                     "paymentDate": {
                       "type": "string",
                       "format": "date-time"
+                    },
+                    "createdDate": {
+                      "type": "string",
+                      "format": "date"
                     },
                     "createdAt": {
                       "type": "string",

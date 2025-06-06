@@ -15,6 +15,7 @@ interface Payroll {
   quantityDayWork: number;
   gratification: number;
   paymentDate: string;
+  createdDate: string;
 }
 
 // @ts-ignore
@@ -27,7 +28,8 @@ export default factories.createCoreService('api::payroll.payroll', ({ strapi }) 
       quantityVC = 0, 
       quantityDayWork = 0, 
       gratification = 0, 
-      paymentDate 
+      paymentDate,
+      createdDate
     } = params.data;
 
     const employee = await strapi.db.query('api::employe.employe').findOne({ where: { documentId: employe } });
@@ -77,7 +79,8 @@ export default factories.createCoreService('api::payroll.payroll', ({ strapi }) 
         mealVoucher,
         foodVoucher,
         totalPayable,
-        paymentDate
+        paymentDate,
+        createdDate
       }
     };
 
@@ -99,7 +102,8 @@ export default factories.createCoreService('api::payroll.payroll', ({ strapi }) 
       quantityDayWork = payroll.quantityDayWork,
       gratification = payroll.gratification,
       paidAt = payroll.paidAt,
-      paymentDate = payroll.paymentDate
+      paymentDate = payroll.paymentDate,
+      createdDate = payroll.createdDate
     } = params.data;
 
     // Usa o employe que já está populado
@@ -149,7 +153,8 @@ export default factories.createCoreService('api::payroll.payroll', ({ strapi }) 
         foodVoucher,
         totalPayable,
         paidAt,
-        paymentDate
+        paymentDate,
+        createdDate
       }
     };
 

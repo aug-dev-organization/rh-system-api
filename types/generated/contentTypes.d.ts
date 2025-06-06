@@ -523,6 +523,7 @@ export interface ApiPayrollPayroll extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    createdDate: Schema.Attribute.Date;
     employe: Schema.Attribute.Relation<'manyToOne', 'api::employe.employe'>;
     foodVoucher: Schema.Attribute.Decimal;
     fuelVoucher: Schema.Attribute.Decimal;

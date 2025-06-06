@@ -24,7 +24,7 @@ export default factories.createCoreController('api::employe.employe', ({ strapi 
           },
           payrolls: {
             where: {
-              createdAt: {
+              createdDate: {
                 $gte: startDate,
                 $lte: endDate
               }
