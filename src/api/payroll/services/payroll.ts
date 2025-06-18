@@ -14,13 +14,14 @@ interface Payroll {
   quantityVC: number;
   quantityDayWork: number;
   gratification: number;
+  discount: number;
   paymentDate: string;
   createdDate: string;
 }
 
 // @ts-ignore
 export default factories.createCoreService('api::payroll.payroll', ({ strapi }) => ({
-  async create(params: { data: any }) {
+  async create(params: { data: Payroll }) {
     const { 
       employe, 
       quantityVR = 0, 
@@ -28,6 +29,7 @@ export default factories.createCoreService('api::payroll.payroll', ({ strapi }) 
       quantityVC = 0, 
       quantityDayWork = 0, 
       gratification = 0, 
+      discount = 0,
       paymentDate,
       createdDate
     } = params.data;
@@ -66,6 +68,10 @@ export default factories.createCoreService('api::payroll.payroll', ({ strapi }) 
 
     let totalPayable = Number(gratification) + fuelVoucher + transportationVoucher + mealVoucher + foodVoucher;
 
+    if (discount > 0) {
+      totalPayable -= Number(discount);
+    }
+
     const payrollData = {
       data: {
         employe: employee.id,
@@ -74,6 +80,7 @@ export default factories.createCoreService('api::payroll.payroll', ({ strapi }) 
         quantityVC: Number(quantityVC),
         quantityDayWork: Number(quantityDayWork),
         gratification: Number(gratification),
+        discount: Number(discount),
         fuelVoucher,
         transportationVoucher,
         mealVoucher,
@@ -103,10 +110,10 @@ export default factories.createCoreService('api::payroll.payroll', ({ strapi }) 
       gratification = payroll.gratification,
       paidAt = payroll.paidAt,
       paymentDate = payroll.paymentDate,
-      createdDate = payroll.createdDate
+      createdDate = payroll.createdDate,
+      discount = payroll.discount
     } = params.data;
 
-    // Usa o employe que já está populado
     const employe = payroll.employe;
 
     if (!employe) throw new Error('Funcionário não encontrado');
@@ -139,6 +146,10 @@ export default factories.createCoreService('api::payroll.payroll', ({ strapi }) 
 
     let totalPayable = Number(gratification) + fuelVoucher + transportationVoucher + mealVoucher + foodVoucher;
 
+    if (discount > 0) {
+      totalPayable -= Number(discount);
+    }
+
     const payrollData = {
       data: {
         employe: employe.id,
@@ -151,6 +162,7 @@ export default factories.createCoreService('api::payroll.payroll', ({ strapi }) 
         transportationVoucher,
         mealVoucher,
         foodVoucher,
+        discount,
         totalPayable,
         paidAt,
         paymentDate,

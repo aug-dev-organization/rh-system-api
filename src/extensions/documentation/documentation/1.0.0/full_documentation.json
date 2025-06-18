@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-06-06T19:19:32.880Z"
+    "x-generation-date": "2025-06-18T14:27:32.272Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -5413,6 +5413,10 @@
                             "type": "string",
                             "format": "date"
                           },
+                          "discount": {
+                            "type": "number",
+                            "format": "float"
+                          },
                           "createdAt": {
                             "type": "string",
                             "format": "date-time"
@@ -6329,6 +6333,10 @@
                       "createdDate": {
                         "type": "string",
                         "format": "date"
+                      },
+                      "discount": {
+                        "type": "number",
+                        "format": "float"
                       },
                       "createdAt": {
                         "type": "string",
@@ -7675,6 +7683,10 @@
                 "type": "string",
                 "format": "date"
               },
+              "discount": {
+                "type": "number",
+                "format": "float"
+              },
               "locale": {
                 "type": "string"
               },
@@ -8274,6 +8286,10 @@
                       "type": "string",
                       "format": "date"
                     },
+                    "discount": {
+                      "type": "number",
+                      "format": "float"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -8428,6 +8444,10 @@
           "createdDate": {
             "type": "string",
             "format": "date"
+          },
+          "discount": {
+            "type": "number",
+            "format": "float"
           },
           "createdAt": {
             "type": "string",
@@ -9119,6 +9139,10 @@
                     "createdDate": {
                       "type": "string",
                       "format": "date"
+                    },
+                    "discount": {
+                      "type": "number",
+                      "format": "float"
                     },
                     "createdAt": {
                       "type": "string",

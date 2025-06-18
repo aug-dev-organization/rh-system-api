@@ -55,6 +55,9 @@
     },
     "createdDate": {
       "type": "date"
+    },
+    "discount": {
+      "type": "decimal"
     }
   }
 }
