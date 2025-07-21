@@ -171,5 +171,81 @@ export default factories.createCoreService('api::payroll.payroll', ({ strapi }) 
     };
 
     return await strapi.entityService.update('api::payroll.payroll', payroll.id, payrollData);
+  },
+
+  async createAll() {
+    const currentDate = new Date();
+    const previousMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+    const currentMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+  
+    const previousMonthPayrolls = await strapi.db.query('api::payroll.payroll').findMany({
+      where: {
+        createdDate: {
+          $gte: previousMonth.toISOString().split('T')[0],
+          $lt: currentMonth.toISOString().split('T')[0]
+        }
+      },
+      populate: ['employe']
+    });
+  
+    const existingCurrentMonthPayrolls = await strapi.db.query('api::payroll.payroll').findMany({
+      where: {
+        createdDate: {
+          $gte: currentMonth.toISOString().split('T')[0],
+          $lt: nextMonth.toISOString().split('T')[0]
+        }
+      },
+      populate: ['employe']
+    });
+  
+    const existingEmployeeIds = new Set(
+      existingCurrentMonthPayrolls
+        .filter(payroll => payroll.employe && payroll.employe.id)
+        .map(payroll => payroll.employe.id)
+    );
+  
+    const payrollsToCreate = previousMonthPayrolls
+      .filter(payroll => payroll.employe && payroll.employe.id)
+      .filter(payroll => !existingEmployeeIds.has(payroll.employe.id)) 
+      .map(payroll => {
+        const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+        const newPaymentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 29);
+        
+        return {
+          employe: payroll.employe.id,
+          quantityVR: payroll.quantityVR,
+          quantityVT: payroll.quantityVT,
+          quantityVC: payroll.quantityVC,
+          quantityDayWork: payroll.quantityDayWork,
+          gratification: payroll.gratification,
+          discount: payroll.discount,
+          fuelVoucher: payroll.fuelVoucher,
+          transportationVoucher: payroll.transportationVoucher,
+          mealVoucher: payroll.mealVoucher,
+          foodVoucher: payroll.foodVoucher,
+          totalPayable: payroll.totalPayable,
+          paidAt: null,
+          paymentDate: newPaymentDate,
+          createdDate: newDate.toISOString().split('T')[0]
+        };
+      });
+  
+    const createdPayrolls = [];
+    const skippedEmployees = previousMonthPayrolls.length - payrollsToCreate.length;
+  
+    for (const payroll of payrollsToCreate) {
+      const created = await strapi.db.query('api::payroll.payroll').create({
+        data: payroll,
+      });
+      createdPayrolls.push(created);
+    }
+  
+    return {
+      message: `Criados ${payrollsToCreate.length} payrolls para o mês atual. ${skippedEmployees} funcionários já possuíam payroll.`,
+      createdCount: payrollsToCreate.length,
+      skippedCount: skippedEmployees,
+      createdPayrolls
+    };
   }
 }));
